@@ -1,7 +1,8 @@
 interface NavItemProps {
-    href: string;
     icon: React.ReactNode;
     onlyIcon?: boolean;
+    href?: string;
     children: React.ReactNode;
+    onClick?: () => void;
 }
 export type { NavItemProps };

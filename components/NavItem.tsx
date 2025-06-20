@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { NavItemProps } from "@/lib/types";
 import {
   Tooltip,
@@ -10,17 +9,14 @@ import {
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
 
-export function NavItem({ href, icon, onlyIcon, children }: NavItemProps) {
-  const pathname = usePathname();
-
+export function NavItem({ icon, onlyIcon, href, children }: NavItemProps) {
   return onlyIcon ? (
     <Tooltip>
       <TooltipTrigger asChild>
         <Link
-          href={href}
+          href={href || `#`}
           className={cn(
-            "flex p-3 text-sm font-medium rounded-full bg-background hover:bg-amber-400 text-background hover:text-background",
-            pathname === href ? "text-foreground bg-amber-400" : "text-foreground/60"
+            "flex p-3 text-sm font-medium rounded-full bg-background hover:bg-amber-400 text-foreground hover:text-background"
           )}
         >
           <span className="flex items-center gap-2 ">{icon}</span>
@@ -32,10 +28,9 @@ export function NavItem({ href, icon, onlyIcon, children }: NavItemProps) {
     </Tooltip>
   ) : (
     <Link
-      href={href}
+      href={href || `#`}
       className={cn(
-        "flex p-3 text-sm font-medium transition-colors rounded-sm text-foreground dark:text-background hover:bg-amber-400 hover:text-background",
-        pathname === href ? "text-foreground" : "text-foreground/60"
+        "flex p-3 text-sm font-medium transition-colors rounded-sm text-foreground dark:text-background hover:bg-amber-400 hover:text-background"
       )}
     >
       <span className="flex items-center gap-2">{icon}</span>
