@@ -4,5 +4,6 @@ interface NavItemProps {
     href?: string;
     children: React.ReactNode;
     onClick?: () => void;
+    isActive?: boolean;
 }
 export type { NavItemProps };

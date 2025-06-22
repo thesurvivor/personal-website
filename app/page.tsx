@@ -1,14 +1,12 @@
 "use client";
 
 import Section from "@/components/ui/Section";
-import SmoothScrollHandler from "@/components/SmoothScrollHandler";
 
 export default function Home() {
 
 
   return (
     <> 
-      <SmoothScrollHandler />
       <main className="flex flex-col">
         <div className="w-full flex flex-col">
           <Section

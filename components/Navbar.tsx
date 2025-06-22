@@ -1,4 +1,6 @@
 "use client";
+
+import React, { useState } from "react";
 import { NavItem } from "./NavItem";
 import {
   HousePlug,
@@ -16,6 +18,9 @@ import {
   DrawerTrigger,
 } from "@/components/ui/Drawer";
 import { Button } from "./ui/Button";
+import { gsap } from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+gsap.registerPlugin(ScrollToPlugin);
 
 const menuItems = [
   { key: "home", onlyIcon: true, name: "Home", icon: <HousePlug /> },
@@ -27,6 +32,17 @@ const menuItems = [
 ];
 
 export default function Navbar() {
+  const [activeSection, setActiveSection] = useState('home');
+
+  const handleScrollToSection = (id: string) => {
+  gsap.to(window, {
+    duration: 1,
+    scrollTo: `#${id}`,
+    ease: "power2.out",
+    onComplete: () => setActiveSection(id),
+  });
+};
+
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   return isDesktop ? (
@@ -36,7 +52,10 @@ export default function Navbar() {
           key={item.key}
           href={`#${item.key}`}
           onlyIcon={item.onlyIcon}
-          icon={item.icon}        >
+          icon={item.icon}
+          onClick={() => handleScrollToSection(item.key)}
+          isActive={activeSection === item.key}
+          >
           {item.name}
         </NavItem>
       ))}
@@ -56,6 +75,8 @@ export default function Navbar() {
               key={item.key}
               icon={item.icon}
               href={`#${item.key}`}
+              onClick={() => handleScrollToSection(item.key)}
+              isActive={activeSection === item.key}
               >
               {item.name}
             </NavItem>

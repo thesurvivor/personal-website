@@ -9,7 +9,8 @@ gsap.registerPlugin(ScrollToPlugin);
 const SmoothScrollHandler = () => {
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      const target = e.currentTarget as HTMLElement;
+      const target = e.target as HTMLElement;
+      console.log("Clicked element:", target);
       if (target.tagName === "A" && target.getAttribute("href")?.startsWith("#")) {
         e.preventDefault();
         const id = target.getAttribute("href")!.replace("#", "");

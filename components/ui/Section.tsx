@@ -11,7 +11,7 @@ interface SectionProps {
 export default function Section({ id, sectionClassName, className, title, children }: SectionProps) {
   return (
     <section id={id} className={cn("w-full p-6 flex flex-col items-center justify-center", sectionClassName)}>
-      <div className={cn("flex flex-col items-center justify-center w-full", className)}>
+      <div className={cn("flex flex-col items-center justify-center w-full p-6 relative before:content-[] before:absolute before:inset-3 before:border-amber-300 before:border before:rounded-sm rounded-sm", className)}>
         <h1 className="text-3xl font-bold text-center mb-4">{title}</h1>
         {children}
       </div>
